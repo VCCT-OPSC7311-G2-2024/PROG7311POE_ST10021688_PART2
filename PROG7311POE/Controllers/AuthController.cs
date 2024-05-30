@@ -11,6 +11,7 @@ using PROG7311POE.ViewModels;
 
 namespace PROG7311POE.Controllers
 {
+    [Route("[controller]")]
     public class AuthController : Controller
     {
         /// <summary>
@@ -19,7 +20,7 @@ namespace PROG7311POE.Controllers
         private readonly MyDbContext _myDbContext;
 
         /// <summary>
-        /// Default contrustor with SQL-lite DB context & access.
+        /// Default contructor with SQL-lite DB context & access.
         /// </summary>
         /// <param name="context">SQL-lite DB context</param>
         public AuthController(MyDbContext context)
@@ -78,6 +79,10 @@ namespace PROG7311POE.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Open Login View
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("Login")]
         public IActionResult Login()
         {

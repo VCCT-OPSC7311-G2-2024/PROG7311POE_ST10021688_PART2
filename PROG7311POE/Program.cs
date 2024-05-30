@@ -61,6 +61,10 @@ namespace PROG7311POE
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            app.MapControllerRoute(
+                name: "auth",
+                pattern: "{controller=Auth}/{action=Register}/{id?}");
+
             app.Run();
         }
     }
