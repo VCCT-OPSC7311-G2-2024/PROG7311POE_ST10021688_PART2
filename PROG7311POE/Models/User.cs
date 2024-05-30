@@ -16,27 +16,15 @@ namespace PROG7311POE.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
-
-        [Required(ErrorMessage = "Username is required")]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 30 characters")]
         public string Username { get; set; }
-
-        [EmailAddress(ErrorMessage = "Invalid email address")] // Using built-in email validations
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "Password is required")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be between 6 and 100 characters")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$", 
-            ErrorMessage = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")]
         public string Password { get; set; }
-
-        [Required]
         public string Role { get; set; } // Farmer or Employee
 
         // -- METHODS ____________________________________________________________________________________________________________________________________________________________
 
         /// <summary>
-        /// Parameterized Constructor
+        /// Creates a new user and hashes password!
         /// </summary>
         /// <param name="userID">usersID in databsae</param>
         /// <param name="username">users username</param>

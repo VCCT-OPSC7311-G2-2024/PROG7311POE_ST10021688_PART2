@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PROG7311POE.Models
 {
     /// <summary>
-    /// This guys sells all the yum-yums and/or farm stuffs
+    /// This guys sells all the farm products/yum-yums.
     /// </summary>
     [Serializable]
     public class Farmer
