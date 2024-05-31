@@ -49,8 +49,6 @@ namespace PROG7311POE.Controllers
         [HttpPost("Register")]
         public IActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
                 var user = new User
                 {
                     Username = model.Username,
@@ -78,8 +76,6 @@ namespace PROG7311POE.Controllers
                 }
 
                 return RedirectToAction("Login", "Auth");
-            }
-            return View(model);
         }
 
         /// <summary>
@@ -106,8 +102,12 @@ namespace PROG7311POE.Controllers
                 if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
                 {
                     var token = GenerateJwtToken(user);
-                    // Store token in cookie for subsequent requests
-                    Response.Cookies.Append("jwt", token, new CookieOptions { HttpOnly = true, Secure = true });
+                    HttpContext.Response.Cookies.Append("Authorization", token, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict
+                    });
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -129,28 +129,17 @@ namespace PROG7311POE.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, user.Role) // Add the role as a claim
             };
 
             var token = new JwtSecurityToken(
                 issuer: _myAuthConfiguration["Jwt:Issuer"],
-                audience: DetermineAudience(user),
+                audience: _myAuthConfiguration["Jwt:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        /// <summary>
-        /// Limits access to views based on roles: farmer or employee.
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        private string DetermineAudience(User user)
-        {
-            // Determine the audience based on user role or other criteria
-            return user.Role == "Farmer" ? _myAuthConfiguration["Jwt:Audiences:0"] : _myAuthConfiguration["Jwt:Audiences:1"];
         }
     }
 }

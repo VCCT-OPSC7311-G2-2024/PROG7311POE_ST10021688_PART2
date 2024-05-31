@@ -7,12 +7,11 @@ using System.Text.Json.Serialization;
 namespace PROG7311POE.Models
 {
     /// <summary>
-    /// This is a human, animals are not allowed.
+    /// Users uses this website.
     /// </summary>
     public class User
     {
         // -- FIELDS ____________________________________________________________________________________________________________________________________________________________
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
@@ -22,7 +21,6 @@ namespace PROG7311POE.Models
         public string Role { get; set; } // Farmer or Employee
 
         // -- METHODS ____________________________________________________________________________________________________________________________________________________________
-
         /// <summary>
         /// Creates a new user and hashes password!
         /// </summary>

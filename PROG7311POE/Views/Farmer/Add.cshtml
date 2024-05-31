@@ -1,0 +1,41 @@
+﻿@model PROG7311POE.ViewModels.FarmerUserViewModel
+
+@{
+    ViewData["Title"] = "Add Farmer";
+}
+
+<h1>Add Farmer</h1>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FarmName"></label>
+        <input asp-for="FarmName" class="form-control" />
+        <span asp-validation-for="FarmName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Farmer</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<!-- // 💻🌸✨💖 --<< End of File >>-- 💖✨🌸💻 --!>
