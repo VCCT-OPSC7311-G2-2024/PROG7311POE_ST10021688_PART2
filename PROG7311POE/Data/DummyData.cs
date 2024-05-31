@@ -30,7 +30,7 @@ namespace PROG7311POE.Data
                 var dummyUser1 = new User
                 {
                     Username = "Harry123",
-                    Password = BCrypt.Net.BCrypt.HashPassword("password"),
+                    Password = BCrypt.Net.BCrypt.HashPassword("Password01!"),
                     Email = "youre.a.wizard.harry@hogwarts.com",
                     Role = "Farmer"
                 };
@@ -38,7 +38,7 @@ namespace PROG7311POE.Data
                 var dummyUser2 = new User
                 {
                     Username = "Jeffrey123",
-                    Password = BCrypt.Net.BCrypt.HashPassword("password"),
+                    Password = BCrypt.Net.BCrypt.HashPassword("Password01!"),
                     Email = "jeff@amazon.com",
                     Role = "Employee"
                 };
@@ -46,7 +46,7 @@ namespace PROG7311POE.Data
                 var dummyUser3 = new User
                 {
                     Username = "John",
-                    Password = BCrypt.Net.BCrypt.HashPassword("password"),
+                    Password = BCrypt.Net.BCrypt.HashPassword("Password01!"),
                     Email = "JDOE@gmail.com",
                     Role = "Farmer"
                 };
@@ -68,7 +68,7 @@ namespace PROG7311POE.Data
                     Location = "Gardens"
                 };
 
-                myContext.Farmers.Add(dummyFarmer1);
+                myContext.Farmers.AddRange(dummyFarmer1, dummyFarmer2);
                 myContext.SaveChanges();
 
                 myContext.Products.AddRange(

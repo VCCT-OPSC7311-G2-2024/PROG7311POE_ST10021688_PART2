@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PROG7311POE.Models;
 using System.Diagnostics;
 
 namespace PROG7311POE.Controllers
 {
+    /*[Authorize] // JWT authentication configured in startup.cs & program.cs*/
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -30,3 +32,4 @@ namespace PROG7311POE.Controllers
         }
     }
 }
+// ??????? --<< End of File >>-- ???????
