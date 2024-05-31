@@ -25,10 +25,6 @@ namespace PROG7311POE
             services.AddDbContext<MyDbContext>(options =>
             options.UseSqlite(Configuration.GetConnectionString("MyDefaultConnection")));
 
-          /*  services.AddControllers();
-            services.AddCors();
-            services.AddSwaggerGen();*/
-
             // JWT authentication
             var key = Encoding.ASCII.GetBytes(Configuration["Jwt:Key"]);
             services.AddAuthentication(x =>
@@ -58,21 +54,11 @@ namespace PROG7311POE
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-              /*  app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PROG7311POE v1"));*/
             }
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
-            // Login page is first upon startup
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapFallbackToPage("/Login");
-            });
 
             // Test data (comment this out when developement is done!)
             DummyData.Initialize(serviceProvider);
