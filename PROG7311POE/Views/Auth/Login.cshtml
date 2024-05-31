@@ -4,7 +4,7 @@
     ViewData["Title"] = "Login";
 }
 
-<h1 class="center-text">Login</h1>
+<h1 style="margin-bottom: 20px;">Login</h1>
 
 <form asp-action="Login" method="post">
     <div class="form-group">
@@ -17,8 +17,12 @@
         <input asp-for="Password" class="form-control" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px; margin-bottom: 20px;">Login</button>
 </form>
+
+<div class="form-link">
+    <a href="/Auth/Register">Don't have an account? Register</a>
+</div>
 
 @*Allows built in input validation *@
 @section Scripts {

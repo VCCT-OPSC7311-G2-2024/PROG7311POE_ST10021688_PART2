@@ -1,6 +1,6 @@
 ﻿@model PROG7311POE.ViewModels.RegisterViewModel
 
-<h1 class="center-text">Register</h1>
+<h1 style="margin-bottom: 20px;">Register</h1>
 
 <form asp-action="Register" method="post">
     <div class="form-group">
@@ -21,7 +21,7 @@
     <div class="form-group">
         <label asp-for="Role"></label>
         <select asp-for="Role" class="form-control">
-            <option value="User">User</option>
+            <option value="Employee">Employee</option>
             <option value="Farmer">Farmer</option>
         </select>
         <span asp-validation-for="Role" class="text-danger"></span>
@@ -38,14 +38,18 @@
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px; margin-bottom: 20px;">Register</button>
 </form>
+
+<div class="form-link">
+    <a href="/Auth/Login">Already have an account? Login</a>
+</div>
 
 
 @section Scripts {
     @*
         Users who are farmer-users have extra details to capture.
-        Otherwise not relevant to basic employee-user.
+        Otherwise not relevant and hidden to basic employee-user.
     *@
     <script>
         document.querySelector('[name="Role"]').addEventListener('change', function () {
